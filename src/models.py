@@ -27,7 +27,7 @@ class Address(Base):
 
 
 class User(Base):
-    __tablename__ = 'usuario'
+    __tablename__ = 'user'
     # Here we define columns for the table person
     # Notice that each column is also a normal Python instance attribute.
     id = Column(Integer, primary_key=True)
@@ -44,6 +44,8 @@ class Character(Base):
     gender = Column(String(250), nullable=False)
     species = Column(String(250), nullable=False)
     planet = Column(String(250), nullable=False)
+    user_id = Column(Integer, ForeignKey('user.id'))
+    user = relationship(User)
     
 class Planet(Base):
     __tablename__ = 'planet'
@@ -52,6 +54,8 @@ class Planet(Base):
     region = Column(String(250), nullable=False)
     coordinates = Column(String(250), nullable=False)
     climate = Column(String(250), nullable=False)
+    user_id = Column(Integer, ForeignKey('user.id'))
+    user = relationship(User)
     
 
 
